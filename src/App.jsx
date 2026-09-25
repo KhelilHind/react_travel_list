@@ -9,35 +9,35 @@ import { useState } from "react";
 // 	{ id: 3, description: "Charger", quantity: 1, packed: false },
 // ];
 function App() {
-	const [items, setItems] = useState([]);
-	//Add a new item
-	function handleAddItems(item) {
-		setItems((prevItems) => [...prevItems, item]);
-	}
-	//delete an item
-	function handleDeleteItem(id) {
-		setItems((items) => items.filter((item) => item.id !== id));
-	}
-	// toggle item
-	function handleToggleItem(id) {
-		setItems((items) =>
-			items.map((item) =>
-				item.id === id ? { ...item, packed: !item.packed } : item
-			)
-		);
-	}
-	return (
-		<div className="app">
-			<Logo />
-			<Form onAddItem={handleAddItems} />
-			<PackingList
-				items={items}
-				onDeleteItem={handleDeleteItem}
-				onToggleItems={handleToggleItem}
-			/>
-			<Stats />
-		</div>
-	);
+  const [items, setItems] = useState([]);
+  //Add a new item
+  function handleAddItems(item) {
+    setItems((prevItems) => [...prevItems, item]);
+  }
+  //delete an item
+  function handleDeleteItem(id) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+  // toggle item
+  function handleToggleItem(id) {
+    setItems((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item,
+      ),
+    );
+  }
+  return (
+    <div className="app">
+      <Logo />
+      <Form onAddItem={handleAddItems} />
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onToggleItems={handleToggleItem}
+      />
+      <Stats items={items} />
+    </div>
+  );
 }
 
 export default App;
